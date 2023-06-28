@@ -3,18 +3,20 @@ from flask import request
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 
-from api import user_bp, trade_bp
+from api import user_bp,trade_bp,chat_bp,admin_bp
 from utils.tool import append
 from data_sheet import get_sheet
+
+
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 #有一个requests的删掉了
-
-app.register_blueprint(user_bp,url_prefix='/user')
-#app.register_blueprint(chat_bp)
+app.register_blueprint(user_bp)
 app.register_blueprint(trade_bp)
+app.register_blueprint(chat_bp)
+app.register_blueprint(admin_bp)
 socketio = SocketIO(app)
 @socketio.on('connect')
 def test_connect(data):

@@ -91,6 +91,46 @@ class History(Base):  # 历史记录的具体内容
         GAMENAME = self.gamename
         return f"User:id:{ID},rid:{RID},gamename:{GAMENAME}"
 
+class Audit(Base):  # 历史记录的具体内容
+    __tablename__ = 'audit'
+    type = Column(String(20), nullable=False)
+    ifpass = Column(BOOLEAN, nullable=False)
+    uid = Column(Integer)
+    message = Column(String(20), nullable=False)
+    id = Column(Integer, primary_key=True)
+
+    def __repr__(self):
+        ID = self.aid
+        UID = self.uid
+        TYPE = self.type
+        IFPASS = self.ifpass
+        MESSAGE = self.message
+        return f"User:id:{ID},uid:{UID},ifpass:{IFPASS},type:{TYPE},message:{MESSAGE}"
+
+class Blacklist(Base):  # 历史记录的具体内容
+    __tablename__ = 'blacklist'
+
+    uid = Column(Integer)
+    id = Column(Integer, primary_key=True)
+
+    def __repr__(self):
+        ID = self.aid
+        UID = self.uid
+
+        return f"User:id:{ID},uid:{UID}"
+
+class Admin(Base):  # 历史记录的具体内容
+    __tablename__ = 'admin'
+    id = Column(Integer, primary_key=True)
+    account = Column(String(20),nullable=False)
+    password = Column(String(20), nullable=False)
+
+    def __repr__(self):
+        ID = self.aid
+        ACCOUNT = self.account
+        PASSWORD = self.password
+        return f"User:id:{ID},account:{ACCOUNT},password:{PASSWORD}"
+
 def get_sheet():
     {
     Base.metadata.create_all(engine)  # 通过此语句创建表

@@ -8,4 +8,4 @@ def get_Indonesia():
     file_name = generate_captcha_image()
     with open(file_name, 'rb') as f:
         res = base64.b64encode(f.read())
-        return res
+    return res
