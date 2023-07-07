@@ -1,6 +1,8 @@
 import base64
 
 from flask import session
+
+from utils import login_required
 from ..trade import bp
 
 from flask import request
@@ -10,6 +12,7 @@ from utils.tool import get_age
 
 
 @bp.route("/put_new_transaction",methods=["POST"])
+@login_required
 def put_new_transaction():
     user_id= request.json.get("uid")
     price = request.json.get("price")

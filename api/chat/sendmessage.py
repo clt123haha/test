@@ -3,11 +3,13 @@ from flask_socketio import emit
 
 from data_sheet import User
 from data_sheet import session
+from utils import login_required
 from utils.tool import append
 from ..chat import bp
 
 
 @bp.route('/sendmessage',methods=["POST"])
+@login_required
 def sendmessage():
     try:
         id1 = request.json.get("uid")

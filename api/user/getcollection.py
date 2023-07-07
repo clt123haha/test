@@ -2,9 +2,11 @@ import os
 
 from flask import request
 from data_sheet import session,Collection
+from utils import login_required
 from ..user import bp
 
 @bp.route("getcollection",methods=['POST'])
+@login_required
 def getcollection():
     uid = request.json.get("uid")
     resultlist = []

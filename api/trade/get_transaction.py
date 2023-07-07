@@ -2,6 +2,8 @@ import base64
 import itertools
 
 from flask import session
+
+from utils import login_required
 from ..trade import bp
 
 from flask import request
@@ -10,6 +12,7 @@ from data_sheet import session, Transaction
 
 
 @bp.route("/gettransaction",methods=["POST"])
+@login_required
 def gettransaction():
     id= request.json.get("tid")
     result = session.query(Transaction).filter(Transaction.id == id).first()

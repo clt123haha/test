@@ -4,9 +4,11 @@ from fastapi import requests
 from flask import request
 
 from data_sheet import session, User
+from utils import login_required
 from ..user import bp
 
 @bp.route("/IdentityAuthenticate",methods=['POST'])
+@login_required
 def authenticate():
     user_id = request.json.get("user_id")
     identity_card = request.json.get("identity_card")

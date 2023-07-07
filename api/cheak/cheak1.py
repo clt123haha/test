@@ -1,7 +1,10 @@
 from flask import request
+
+from utils import login_required
 from ..cheak import bp
 
 @bp.route('/checking1')
+@login_required
 def check1():
     checking1=request.json.get("checking1")
     try:

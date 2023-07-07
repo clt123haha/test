@@ -3,8 +3,11 @@ from sqlalchemy import and_
 
 from data_sheet import session, User_History, History
 from api.user import bp
+from utils import login_required
+
 
 @bp.route('/history/lc', methods=['PUT'])
+@login_required
 def lc():
     message = request.get_json()
     hid = message.get('hid')

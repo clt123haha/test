@@ -1,4 +1,6 @@
 from flask_socketio import emit
+
+from utils import login_required
 from ..admin import bp
 from flask import request
 
@@ -6,6 +8,7 @@ from data_sheet import session, Audit, Blacklist
 
 
 @bp.route('/blacklistaudit',methods=['POST'])
+@login_required
 def blacklistauditing():
     opinion = request.json.get("opinion")
     aid = request.json.get("aid")

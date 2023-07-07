@@ -1,9 +1,12 @@
 from data_sheet import session, Audit, User
 from flask import request
+
+from utils import login_required
 from ..user import bp
 
 
 @bp.route('/newblock',methods=['POST'])
+@login_required
 def newblock():
     uid = request.json.get("uid")
     blocked_uid = request.json.get("blocked_uid")

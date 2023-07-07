@@ -1,4 +1,6 @@
 from flask import session
+
+from utils import login_required
 from ..trade import bp
 
 from flask import request
@@ -7,6 +9,7 @@ from data_sheet import session, Transaction
 
 
 @bp.route("/getalltransaction",methods=["POST"])
+@login_required
 def getalltransaction():
     resultlist = []
     result = session.query(Transaction).all()

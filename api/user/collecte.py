@@ -1,8 +1,10 @@
 from flask import request
 from data_sheet import session,Collection
+from utils import login_required
 from ..user import bp
 
 @bp.route("/collcte",methods=['POST'])
+@login_required
 def collcte():
     uid = request.json.get("uid")
     tid = request.json.get("tid")
