@@ -12,6 +12,9 @@ from data_sheet import get_sheet
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY']='LIUBINGZHEISBEST'
+#忽略的检查的url
+NOT_CHECK_URL=['/user/login','/user/reqister']
 CORS(app, supports_credentials=True)
 
 #有一个requests的删掉了
