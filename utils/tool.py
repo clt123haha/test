@@ -64,6 +64,7 @@ def generate_captcha_image(save_path=r'E:\exchange\Temp\image'):
     image,img_str = create_image()
     if not os.path.exists(save_path):   # 检测目录是否存在，不在则创建
         os.makedirs(save_path)
+    img_str = img_str.lower()
     t = time.time()
     image.save('%s/%s.png'%(save_path, str(t)+img_str))
     return '%s/%s.png'%(save_path, str(t)+img_str)
