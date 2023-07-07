@@ -36,11 +36,14 @@ def gettransaction():
         for line in f:
             message += line
         for i in itertools.count(start=1):
-            file_path = r'E:\trade\account' + '\\' + str(i) + '\\' + str(id) + ".png"
+            file_path = r'E:\trade\account' + '\\' + str(i) + '\\' + str(id) + ".jpg"
             if not os.path.exists(file_path):  # 检测目录是否存在，不在则创建
                 break
             with open(file_path, 'rb') as f:
-                photolist.append(str(base64.b64encode(f.read())))
+                img_data = f.read()
+                base64_data = base64.b64encode(img_data)
+                strtemp = "data:image/jpeg;base64,"+str(base64_data)[2:len(str(base64_data))-1]
+                photolist.append(strtemp)
         data = {"tid":result.id,"price": price, "channel": channel, "login_method": login_method, "message": message, "system": system,
             "addiction": addiction, "seller": result.seller,"photo":photolist}
     except Exception as e:
