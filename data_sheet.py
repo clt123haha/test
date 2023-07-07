@@ -3,8 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-
-engine = create_engine("mysql+pymysql://root:yueye13084030!@gz-cynosdbmysql-grp-ro694ctz.sql.tencentcdb.com:28492/exchange", echo=True)
+#engine = create_engine("mysql+pymysql://root:yueye13084030!@gz-cynosdbmysql-grp-ro694ctz.sql.tencentcdb.com:28492/exchange?charset=utf8")
+engine = create_engine("mysql+pymysql://root:root@localhost:3306/exchange",echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -130,6 +130,32 @@ class Admin(Base):  # 历史记录的具体内容
         ACCOUNT = self.account
         PASSWORD = self.password
         return f"User:id:{ID},account:{ACCOUNT},password:{PASSWORD}"
+
+class Collection(Base):  # 历史记录的具体内容
+    __tablename__ = 'collection'
+    id = Column(Integer, primary_key=True)
+    uid = Column(Integer,nullable=False)
+    tid = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        ID = self.aid
+        UID = self.uid
+        TID = self.tid
+        return f"User:id:{ID},uid:{UID},tid:{TID}"
+
+class Check(Base):  # 历史记录的具体内容
+    __tablename__ = 'cheak'
+    id = Column(Integer, primary_key=True)
+    cheak1= Column(Integer,nullable=False)
+    cheak2 = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        ID = self.aid
+        CHEAK1 = self.cheak1
+        CHEAK2 = self.cheak2
+        return f"User:id:{ID},cheak1:{CHEAK1},cheak2:{CHEAK2}"
+
+    
 
 def get_sheet():
     {
